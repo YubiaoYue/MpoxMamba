@@ -97,7 +97,7 @@ class GroupSSMConv(nn.Module):
         out = self.act(out)
         return out + shortcut
 
-class MpoxNet(nn.Module):
+class MpoxMamba(nn.Module):
     def __init__(self,stages_out_channels: List[int],in_c=3,num_classes=10):
         super(MpoxNet, self).__init__()
 
@@ -136,7 +136,7 @@ class MpoxNet(nn.Module):
 
 # # 假设输入张量形状为 [batch_size, channels, height, width]
 input_tensor = torch.randn(1,3,224,224).cuda()
-model = MpoxNet([32,64,128,256]).cuda()
+model = MpoxMamba([32,64,128,256]).cuda()
 output = model(input_tensor)
 # 打印输出张量的形状以验证尺寸
 print(output.shape)  # 应该输出 torch.Size([1, 256, 28, 28])
